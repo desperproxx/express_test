@@ -1,0 +1,57 @@
+{# app/Resources/views/lucky/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<center><table>
+    <thead>
+        <tr>
+          <th>URL</th>
+          <th>Превью</th>
+          <th>Дата создания</th>
+          <th>Шапка</th>
+          <th>Контент</th>
+      </tr>
+  </thead>
+  <tbody>
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <td>
+        {{ form_label(form.Slug) }}
+        {{ form_errors(form.Slug) }}
+        {{ form_widget(form.Slug) }}
+    </td>
+
+    <td>
+        {{ form_label(form.Preview) }}
+        {{ form_errors(form.Preview) }}
+        {{ form_widget(form.Preview) }}
+    </td>
+    <td>
+        {{ form_label(form.createdAt) }}
+        {{ form_errors(form.createdAt) }}
+        {{ form_widget(form.createdAt) }}
+    </td>
+    <td>
+        {{ form_label(form.header) }}
+        {{ form_errors(form.header) }}
+        {{ form_widget(form.header) }}
+    </td>
+    <td>
+        {{ form_label(form.content) }}
+        {{ form_errors(form.content) }}
+        {{ form_widget(form.content) }}
+    </td>
+
+    <td>
+        {{ form_widget(form.save) }}
+    </td>
+    {{ form_end(form) }}
+</tbody>
+</table>
+
+
+{% block content %}{% endblock %}
+{% endblock %}

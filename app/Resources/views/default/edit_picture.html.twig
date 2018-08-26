@@ -1,0 +1,47 @@
+{# app/Resources/views/lucky/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<center><table>
+    <thead>
+        <tr>
+          <th>Img</th>
+          <th>Описание</th>
+      </tr>
+  </thead>
+  <tbody>
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <td>
+        {{ form_label(form.Img) }}
+        {{ form_errors(form.Img) }}
+        {{ form_widget(form.Img) }}
+    </td>
+
+    <td>
+        {{ form_label(form.Description) }}
+        {{ form_errors(form.Description) }}
+        {{ form_widget(form.Description) }}
+    </td>
+    <td>
+        {{ form_widget(form.save) }}
+    </td>
+    {{ form_rest(form) }}
+    <form method='post' enctype='multipart/form-data' action=''>
+        <td><select class='sel' name='cur'>
+            {% for tag in all_tags %}
+            <option value={{tag.id}}>{{tag.name}}</option>
+            {% endfor %}
+        </select>
+    </td>
+    <td><INPUT TYPE=SUBMIT VALUE='Добавить тег' NAME=tag></td></form>
+    {{ form_end(form) }}
+</tbody>
+</table>
+
+
+{% block content %}{% endblock %}
+{% endblock %}

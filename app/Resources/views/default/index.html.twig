@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+
+<div class="tabs">
+	<ul>
+		<li>Новости</li>
+		<li>Галлерея</li>
+	</ul>
+	<div>
+		<div id="news"></div>
+		<div id="pictures"></div>
+	</div>
+</div>            
+</div> 
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+
+{% endblock %}

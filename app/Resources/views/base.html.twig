@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>{% block title %}Welcome!{% endblock %}</title>
+	{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('build/style.css') }}"/>
+	{% endblock %}
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+	{% block body %}
+	<div class="header">
+		<a href="#default" class="logo">Тестовый блог для Курьер Экспресс</a>
+		<div class="header">
+			<div class="header-right">
+				<a href="{{ path('login')}}">Вход</a>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+	{% block javascripts %}
+	<script type ="text/javascript" src="{{ asset('build/app.js') }}"></script>
+	{% endblock %}
+</body>
+</html>

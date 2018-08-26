@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<center><h1>CRUD новостей</h1></center>
+<center><table class="news">
+	<thead>
+		<tr>
+
+			<th>URL</th>
+			<th>Превью</th>
+			<th>{{ knp_pagination_sortable(all_news, 'Дата создания', 'createdAt') }}</th>
+			<th>{{ knp_pagination_sortable(all_news, 'Заголовок', 'header') }}</th>
+			<th>Контент</th>
+			<th>Изменить</th>
+			<th>Удалить</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		{% for post in all_news %}
+		<tr>
+			<td>{{ post.Slug }}</td>
+			<td>{{ post.Preview }}</td>
+			<td>{{ post.createdAt|date('Y-m-d') }}</td>
+			<td>{{ post.header }}</td>
+			<td>{{ post.Content }}</td>
+			<td>
+				<a href="{{ path('admin_update', {'slug':post.id})}}">Изменить</a>
+			</td>
+			<td>
+				<a href="{{ path('admin_remove', {'slug':post.id})}}">Удалить</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	{{ form_start(form_news) }}
+	{{ form_errors(form_news) }}
+
+	<td>
+		{{ form_label(form_news.Slug) }}
+		{{ form_errors(form_news.Slug) }}
+		{{ form_widget(form_news.Slug) }}
+	</td>
+
+	<td>
+		{{ form_label(form_news.Preview) }}
+		{{ form_errors(form_news.Preview) }}
+		{{ form_widget(form_news.Preview) }}
+	</td>
+	<td>
+		{{ form_label(form_news.createdAt) }}
+		{{ form_errors(form_news.createdAt) }}
+		{{ form_widget(form_news.createdAt) }}
+	</td>
+	<td>
+		{{ form_label(form_news.header) }}
+		{{ form_errors(form_news.header) }}
+		{{ form_widget(form_news.header) }}
+	</td>
+	<td>
+		{{ form_label(form_news.content) }}
+		{{ form_errors(form_news.content) }}
+		{{ form_widget(form_news.content) }}
+	</td>
+
+	<td>
+		{{ form_widget(form_news.save) }}
+	</td>
+	{{ form_end(form_news) }}
+</table>
+<div class="pagination">
+	{{ knp_pagination_render(all_news) }} 
+</div>
+<center><h1>CRUD галлереи</h1></center>
+<center><table class=pictures>
+	<thead>
+		<tr>
+			<th>Картинка</th>
+			<th>Описание</th>
+			<th>Теги</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+	<tr>
+		<td><form method='post' enctype='multipart/form-data' action='admin'></td>
+		<td><input type=file name='tz'></td>
+		<td><INPUT TYPE=TEXT NAME=Last_name></td>
+		<td>
+		</td>
+		<td><INPUT TYPE=SUBMIT VALUE='Ввести' NAME=qwe></td>
+	</form>
+</tr>
+</table>
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
