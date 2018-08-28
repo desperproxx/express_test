@@ -24,7 +24,7 @@ class Pictures implements JsonSerializable
       /**
      * @var string
      *
-     * @ORM\Column(name="img", type="string", length=25, nullable=true)
+     * @ORM\Column(name="img", type="string", length=255, nullable=true)
      */
       private $img;
 
@@ -56,9 +56,11 @@ class Pictures implements JsonSerializable
      */
     public function setImg($img)
     {
-        $this->img = $img;
+         if($img !== null) {
+            $this->img = $img;
 
-        return $this;
+            return $this;
+        } 
     }
 
     /**

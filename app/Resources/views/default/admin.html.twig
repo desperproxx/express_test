@@ -47,7 +47,7 @@
 		{{ form_errors(form_news.Preview) }}
 		{{ form_widget(form_news.Preview) }}
 	</td>
-	<td>
+	<td style="display: none">
 		{{ form_label(form_news.createdAt) }}
 		{{ form_errors(form_news.createdAt) }}
 		{{ form_widget(form_news.createdAt) }}
@@ -86,8 +86,12 @@
 		<td><form method='post' enctype='multipart/form-data' action='admin'></td>
 		<td><input type=file name='tz'></td>
 		<td><INPUT TYPE=TEXT NAME=Last_name></td>
-		<td>
-		</td>
+		    <td><select class='sel' name='cur'>
+            {% for tag in all_tags %}
+            <option value={{tag.id}}>{{tag.name}}</option>
+            {% endfor %}
+        </select>
+    </td>
 		<td><INPUT TYPE=SUBMIT VALUE='Ввести' NAME=qwe></td>
 	</form>
 </tr>

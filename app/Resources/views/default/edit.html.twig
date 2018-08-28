@@ -15,7 +15,7 @@
   </thead>
   <tbody>
 
-    {{ form_start(form) }}
+    {{ form_start(form, { attr: {novalidate: 'novalidate'} }) }}
     {{ form_errors(form) }}
 
     <td>
@@ -25,9 +25,11 @@
     </td>
 
     <td>
+        {% set n=filname%}
         {{ form_label(form.Preview) }}
         {{ form_errors(form.Preview) }}
         {{ form_widget(form.Preview) }}
+
     </td>
     <td>
         {{ form_label(form.createdAt) }}

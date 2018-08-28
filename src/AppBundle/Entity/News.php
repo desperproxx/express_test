@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * News
@@ -31,7 +32,7 @@ class News implements JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="preview", type="string", length=25, nullable=true)
+     * @ORM\Column(name="preview", type="string", length=255, nullable=true)
      */
     private $preview;
 
@@ -100,10 +101,12 @@ class News implements JsonSerializable
      */
     public function setPreview($preview)
     {
-        $this->preview = $preview;
+        if($preview !== null) {
+            $this->preview = $preview;
 
-        return $this;
-    }
+            return $this;
+        } 
+       }
 
     /**
      * Get preview
@@ -196,6 +199,14 @@ class News implements JsonSerializable
             'header'=> $this->header,
             'content'=> $this->content
             );
+    }
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+    public function __toString()
+    {
+        return $this->getPreview();
     }
 }
 

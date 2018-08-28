@@ -1,5 +1,56 @@
 var $ = require("jquery");
 var data1  = new Array(); 
+function json_get(path) {
+		$.getJSON(path, function(data) { 
+			$('#news').html('<a href="/">Назад</a>');
+			$.each(data, function (ind, value) {
+
+				$('#news').append('<div class=blog>'+value.slug+'<br><img src='+value.preview+' width=150 height=150>'+value.createdAt.date+' '+value.header+' '+htmlspecialchars_decode(value.content)+'</div><br>');	
+			});
+		});
+	}
+function htmlspecialchars_decode(string, quote_style) {
+	var optTemp = 0,
+	i = 0,
+	noquotes = false;
+	if (typeof quote_style === 'undefined') {
+		quote_style = 2;
+	}
+	string = string.toString()
+	.replace(/&lt;/g, '<')
+	.replace(/&gt;/g, '>');
+	var OPTS = {
+		'ENT_NOQUOTES': 0,
+		'ENT_HTML_QUOTE_SINGLE': 1,
+		'ENT_HTML_QUOTE_DOUBLE': 2,
+		'ENT_COMPAT': 2,
+		'ENT_QUOTES': 3,
+		'ENT_IGNORE': 4
+	};
+	if (quote_style === 0) {
+		noquotes = true;
+	}
+	if (typeof quote_style !== 'number') { 
+		quote_style = [].concat(quote_style);
+		for (i = 0; i < quote_style.length; i++) {
+			if (OPTS[quote_style[i]] === 0) {
+				noquotes = true;
+			} else if (OPTS[quote_style[i]]) {
+				optTemp = optTemp | OPTS[quote_style[i]];
+			}
+		}
+		quote_style = optTemp;
+	}
+	if (quote_style & OPTS.ENT_HTML_QUOTE_SINGLE) {
+		string = string.replace(/&#0*39;/g, "'"); 
+	}
+	if (!noquotes) {
+		string = string.replace(/&quot;/g, '"');
+	}
+	string = string.replace(/&amp;/g, '&');
+	return string;
+}
+
 $.getJSON('json_pictures', function(data) { 
 	$.each(data, function (ind, value) {
 		$.each(value.tags, function (index, val) {
@@ -30,11 +81,20 @@ $.getJSON('json_pictures', function(data) {
 			});
 		});
 	});
+	$("#month_filter").click(function(){
+		json_get('json_news_filter/'+$('.date_from option:selected').val()+'/'+$('.date_to option:selected').val()+'');
+	});
+	
+	$("#header_filter").click(function(){
+		json_get('json_news_filter_header');	
+
+	});
+
 });
 $.getJSON('json_news', function(data) { 
 	$.each(data, function (ind, value) {
 
-		$('#news').append('<div class=blog>'+value.slug+' '+value.preview+' '+value.createdAt.date+' '+value.header+' '+value.content+'</div><br>');	
+		$('#news').append('<div class=blog>'+value.slug+'<br><img src='+value.preview+' width=150 height=150>'+value.createdAt.date+' '+value.header+' '+htmlspecialchars_decode(value.content)+'</div><br>');	
 	});
 });
 $(document).ready(function(){

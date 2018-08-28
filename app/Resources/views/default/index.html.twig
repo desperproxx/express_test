@@ -9,14 +9,27 @@
 		<li>Галлерея</li>
 	</ul>
 	<div>
-		<div id="news"></div>
-		<div id="pictures"></div>
-	</div>
-</div>            
-</div> 
-{% endblock %}
+		<div id="news">
+			<select class='date_from' name='date_from'>
+				{% for key, value in months %}
+				<option value={{value}}>{{key}}</option>
+				{% endfor %}
+			</select>	
+			<select class='date_to' name='date_to'>
+				{% for key, value in months %}
+				<option value={{value}}>{{key}}</option>
+				{% endfor %}
+			</select>
+			<INPUT id=month_filter TYPE=SUBMIT VALUE='Фильтр по месяцам' NAME=month_filter>
+				<INPUT id=header_filter TYPE=SUBMIT VALUE='Фильтр по шапке' NAME=header_filter>
+				</div>
+				<div id="pictures"></div>
+			</div>
+		</div>            
+	</div> 
+	{% endblock %}
 
-{% block stylesheets %}
-{{ parent() }}
+	{% block stylesheets %}
+	{{ parent() }}
 
-{% endblock %}
+	{% endblock %}

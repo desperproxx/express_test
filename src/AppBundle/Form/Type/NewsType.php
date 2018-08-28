@@ -6,9 +6,11 @@ use AppBundle\Entity\News;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Doctrine\ORM\EntityRepository;
 
@@ -19,8 +21,9 @@ class NewsType extends AbstractType
     {
         $builder
         ->add('Slug', TextType::class)
-        ->add('Preview', TextType::class)
-        ->add('createdAt', DateType::class)
+        ->add('Preview', FileType::class, array('data_class' => null))
+        ->add('createdAt', DateType::class, [
+         'data' => new \DateTime("now")])
         ->add('header', TextType::class)
         ->add('content', TextType::class)
         ->add('save', SubmitType::class) 
