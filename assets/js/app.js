@@ -1,14 +1,26 @@
 var $ = require("jquery");
 var data1  = new Array(); 
 function json_get(path) {
-		$.getJSON(path, function(data) { 
-			$('#news').html('<a href="/">Назад</a>');
-			$.each(data, function (ind, value) {
-
-				$('#news').append('<div class=blog>'+value.slug+'<br><img src='+value.preview+' width=150 height=150>'+value.createdAt.date+' '+value.header+' '+htmlspecialchars_decode(value.content)+'</div><br>');	
-			});
+	$.getJSON(path, function(data) { 
+		$('#news').html('<a href="/">Назад</a>');
+		$.each(data, function (ind, value) {
+		$('#news').append('<div class=blog><b>Шапка: </b>'+value.header+'<b> URL: </b>'+value.slug+' <img src='+value.preview+' width=150 height=100><b>Дата создания: </b>'+value.createdAt.date.substring(0, 10)+' '+htmlspecialchars_decode(value.content)+'</div>');
 		});
-	}
+	});
+}
+function formatDate(date) {
+
+	var dd = date.getDate();
+	if (dd < 10) dd = '0' + dd;
+
+	var mm = date.getMonth() + 1;
+	if (mm < 10) mm = '0' + mm;
+
+	var yy = date.getFullYear() % 100;
+	if (yy < 10) yy = '0' + yy;
+
+	return dd + '.' + mm + '.' + yy;
+}
 function htmlspecialchars_decode(string, quote_style) {
 	var optTemp = 0,
 	i = 0,
@@ -60,13 +72,13 @@ $.getJSON('json_pictures', function(data) {
 		for(var i=0; i < data1.length; i++) {
 			select_tag_tofilter += '<div class="tag_down">'+data1[i]+'</div> ';   
 		} 
-		$('.pictures').append('<tr><td><img src="'+value.img+'" width=250 height=250></td><td>'+value.description+'</td><td>'+data1+'</td><td><a href="admin_update_pictures/'+value.id+'">Изменить</a></td><td><a href="admin_clear_teg/'+value.id+'">очистить теги</a></td></tr>');	
-		$('#pictures').append('<div class=picture><img src="'+value.img+'" width=250 height=250><br><b>'+value.description+'</b><br>'+select_tag_tofilter+'</div>');	
+		$('.pictures').append('<tr><td><img src="'+value.img+'" width=250 height=150></td><td><b>'+value.description+'</b></td><td>'+data1+'</td><td><a href="admin_update_pictures/'+value.id+'">Изменить</a></td><td><a href="admin_clear_teg/'+value.id+'">очистить теги</a></td></tr>');	
+		$('#pictures').append('<div class=picture><img src="'+value.img+'" width=250 height=150><p>'+value.description+'</p>'+select_tag_tofilter+'</div>');	
 		data1=[];
 	});
 	var data_filter_tag = new Array();
 	$(".tag_down").click(function(){
-		$("#pictures").html("");
+		$("#pictures").html('<a href="/">Назад</a>');
 		$.getJSON('search_with_tags/'+$(this).text(), function(da) { 
 			$.each(da, function (ind, valu) {
 				$.each(valu.tags, function (index, val) {
@@ -76,7 +88,7 @@ $.getJSON('json_pictures', function(data) {
 				for(var i=0; i < data_filter_tag.length; i++) {
 					select_tag_filter += '<div class="tag_down">'+data_filter_tag[i]+'</div> ';   
 				}
-				$('#pictures').append('<div class=picture><img src="'+valu.img+'" width=250 height=250><br><b>'+valu.description+'</b><br>'+select_tag_filter+'</div>');	
+				$('#pictures').append('<div class=picture><img src="'+valu.img+'" width=250 height=150><p>'+valu.description+'</p>'+select_tag_filter+'</div>');	
 				data_filter_tag=[];
 			});
 		});
@@ -94,7 +106,7 @@ $.getJSON('json_pictures', function(data) {
 $.getJSON('json_news', function(data) { 
 	$.each(data, function (ind, value) {
 
-		$('#news').append('<div class=blog>'+value.slug+'<br><img src='+value.preview+' width=150 height=150>'+value.createdAt.date+' '+value.header+' '+htmlspecialchars_decode(value.content)+'</div><br>');	
+		$('#news').append('<div class=blog><b>Шапка: </b>'+value.header+'<b> URL: </b>'+value.slug+' <img src='+value.preview+' width=150 height=100><b>Дата создания: </b>'+value.createdAt.date.substring(0, 10)+' '+htmlspecialchars_decode(value.content)+'</div>');	
 	});
 });
 $(document).ready(function(){

@@ -6,14 +6,14 @@ body{
 
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: white;
   padding: 20px 10px;
 }
 
 
 .header a {
   float: left;
-  color: black;
+  color: #1e90ff;
   text-align: center;
   padding: 12px;
   text-decoration: none;
@@ -27,7 +27,7 @@ body{
   font-weight: bold;
 }
 
-.header a:hover {
+.header a:last-child:hover {
   background-color: #ddd;
   color: black;
 }
@@ -42,55 +42,53 @@ body{
 }
 
 input[type=text], input[type=password]  {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 200px;
+  background-color: DodgerBlue;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 .authorise {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 }
 
 .blog{
   display: block;
-  margin: 0 auto;
-  width: 100vw;
+  margin: 10px auto;
+  width: 100%;
+  border: 1px solid white;
+  height: 100px;
   padding: 10px;
-  border-radius: 10px;
-  background-color: #45c965;
+  border-radius: 2px;
+  background-color: DodgerBlue;
   color: white;
+   -webkit-box-shadow: 3px 3px 3px #777;
+ -moz-box-shadow: 3px 3px 3px #777;
+ box-shadow: 3px 3px 3px #777;
 }
 
-
-.picture{
-  width: 280px;
-  height: 300px;
-  padding: 30px;
+.blog img{
   float: left;
-  text-align: center;
-  background-color: #45c965;
-  color: white;
+  padding: 5px;
 }
 
 .picture input{
@@ -113,7 +111,7 @@ input[type=submit]:hover {
   display:block;
   clear:both;
   height:5px;
-  background:#46c765;
+  background:#1e90ff;
 }
 .tabs ul li{
   margin:0px;
@@ -126,20 +124,25 @@ input[type=submit]:hover {
   color:#707070;
 }
 .tabs ul li.active, .tabs ul li.active:hover{
-  background:#46c765;
+  background:#1e90ff;
   color:#fff;
 }
 .tabs ul li:hover{
   background:#d6d6d7;
 }
 .tag_down{
-  font-size: 20px;
+  position: relative;
+  bottom: 50px;
+  display: inline-block;
+  font-family : Courier New, monospace ! important;
+  font-size: 15px;
+  color: grey;
   cursor: pointer;
-  width: 100px;
+ 
 }
 .tag_down:hover{
-background-color: lightblue;
-transition: 0.2s;
+  background-color: lightblue;
+  transition: 0.2s;
 }
 .pagination{
   text-decoration:none;
@@ -150,4 +153,84 @@ transition: 0.2s;
 .pagination li{
   font-size: 20px;
   display: inline;
+}
+
+.news, .pictures {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: lightblue;
+  text-align: center;
+
+}
+.news th a{
+  color: lightblue;
+}
+
+.news, .pictures td, .news, .pictures th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: white
+}
+
+.news, .pictures a{
+  text-decoration: none;
+
+}
+
+.news, .pictures tr:nth-child(even){background-color: #f2f2f2;}
+
+.news tr:hover {background-color: #ddd;}
+
+.news th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4c81af;
+  color: white;
+}
+
+.pictures th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4c81af;
+  color: white;
+}
+
+
+select{
+  position: relative;
+  font-family: Arial;
+  background-color: DodgerBlue;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 17px;
+  height: 30px;
+}
+
+.picture {
+ position: relative;
+ padding: 10px;
+display: inline-block;
+ text-align: center;
+
+}
+ 
+.picture img {
+ border: 10px solid #fff;
+ border-bottom: 45px solid #fff;
+ -webkit-box-shadow: 3px 3px 3px #777;
+ -moz-box-shadow: 3px 3px 3px #777;
+ box-shadow: 3px 3px 3px #777;
+}
+ 
+.picture p {
+ position: relative;
+ text-align: center;
+ width: 100%;
+ bottom: 50px;
+ font: 400 18px/1 'Kaushan Script', cursive;
+ color: #888;
 }
